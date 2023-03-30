@@ -3,6 +3,7 @@ package com.dmanso.apimTestingUtils.controller;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+
 import com.dmanso.apimTestingUtils.model.Item;
 import com.dmanso.apimTestingUtils.model.ItemsRepo;
 
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/item")
 public class ItemsController {
     
     @Autowired
