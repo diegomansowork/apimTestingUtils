@@ -1,68 +1,46 @@
 
 package com.dmanso.apimTestingUtils.model;
 
+import javax.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.sql.Timestamp;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Item {
-    private int itemId;
-    private String itemName;
-    private int itemVendorId;
-    private int itemModelYear;
-    private Number itemListPrice;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(updatable = false, nullable = false)
+    Long itemId;
+    
+    @Column
+    String itemName;
+    
+    @Column
+    int itemVendorId;
+    
+    @Column
+    int itemModelYear;
+    
+    @Column
+    Number itemListPrice;
 
-    public Item() {};
-
-    public Item(int itemId, String itemName, int itemVendorId, int itemModelYear, Number itemListPrice) {
-        this.itemId = itemId;
-        this.itemName = itemName;
-        this.itemVendorId = itemVendorId;
-        this.itemModelYear = itemModelYear;
-        this.itemListPrice = itemListPrice;
-    }
-
-    public int getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(int itemId) {
-        this.itemId = itemId;
-    }
-
-    public String getItemName() {
-        return itemName;
-    }
-
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public int getItemVendorId() {
-        return itemVendorId;
-    }
-
-    public void setItemVendorId(int itemVendorId) {
-        this.itemVendorId = itemVendorId;
-    }
-
-    public int getItemModelYear() {
-        return itemModelYear;
-    }
-
-    public void setItemModelYear(int itemModelYear) {
-        this.itemModelYear = itemModelYear;
-    }
-
-    public Number getItemListPrice() {
-        return itemListPrice;
-    }
-
-    public void setItemListPrice(Number itemListPrice) {
-        this.itemListPrice = itemListPrice;
-    }
-
-    @Override
-    public String toString() {
-        return "Items [itemId=" + itemId + ", itemListPrice=" + itemListPrice + ", itemModelYear=" + itemModelYear
-                + ", itemName=" + itemName + ", itemVendorId=" + itemVendorId + "]";
-    }
+    @CreationTimestamp
+    @Column(updatable = false)
+    Timestamp dateCreated;
+    
+    @UpdateTimestamp
+    Timestamp lastModified;
 
     
 }

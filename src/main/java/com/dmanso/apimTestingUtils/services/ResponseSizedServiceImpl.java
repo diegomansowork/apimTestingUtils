@@ -1,20 +1,18 @@
-package com.dmanso.apimTestingUtils.model;
-
+package com.dmanso.apimTestingUtils.services;
 
 import java.util.Random;
+import org.springframework.stereotype.Service;
 
+import com.dmanso.apimTestingUtils.model.Response;
 
-import org.springframework.stereotype.Repository;
+@Service
+public class ResponseSizedServiceImpl implements ResponseSizedService{
 
-@Repository
-public class ResponseRepo {
-   
-    public Response getSizedResponse(int sizeInBytes){
-
+    @Override
+    public Response getSizedResponse(int sizeInBytes) {
         return new Response(sizeInBytes, getRandomBase64String(sizeInBytes));
-
     }
-
+    
     private String getRandomBase64String(int sizeInBytes){
 
         int leftLimit = 97; // letter 'a'

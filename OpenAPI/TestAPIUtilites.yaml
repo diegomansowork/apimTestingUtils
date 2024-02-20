@@ -1,0 +1,246 @@
+openapi: 3.1.0
+info:
+  title: TestUtilities
+  version: '1.0'
+  summary: API Test utilities
+  description: This API could be used to test your API Manager or API Project
+  contact:
+    email: diegomansowork@outlook.es
+    name: Diego Manso
+servers:
+  - url: 'http://localhost:8080'
+    description: local
+paths:
+  /items:
+    parameters: []
+    get:
+      summary: Get Item Info by Item ID
+      tags: []
+      responses:
+        '200':
+          description: Item Found
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+              examples:
+                Get Item ID 1:
+                  value:
+                    - itemId: 1
+                      itemName: pencil
+                      itemVendorId: 123
+                      itemModelYear: 2004
+                      itemListPrice: 12.45
+                      dateCreated: '2024-02-19T18:02:13.125+00:00'
+                      lastModified: '2024-02-19T18:02:13.126+00:00'
+                    - itemId: 2
+                      itemName: table
+                      itemVendorId: 1543
+                      itemModelYear: 2013
+                      itemListPrice: 1244.32
+                      dateCreated: '2024-02-19T18:02:13.158+00:00'
+                      lastModified: '2024-02-19T18:02:13.158+00:00'
+        '404':
+          description: Item Not Found
+      operationId: get-Items
+      description: Retrieve a list with all Items.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: delayInSeconds
+          description: Delay to be applied
+  '/items/{itemId}':
+    parameters:
+      - schema:
+          type: integer
+        name: itemId
+        in: path
+        required: true
+        description: ItemId
+    get:
+      summary: Get Item Info by Item ID
+      tags: []
+      responses:
+        '200':
+          description: Item Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+              examples:
+                Get Item ID 1:
+                  value:
+                    itemId: 1
+                    itemName: Pencil
+                    itemVendorId: 3
+                    itemModelYear: 1998
+                    itemListPrice: 2.65
+                    dateCreated: '2024-02-19T18:02:13.125+00:00'
+                    lastModified: '2024-02-19T18:02:13.126+00:00'
+        '404':
+          description: Item Not Found
+      operationId: get-Items-ItemId
+      description: Retrieve the information of the Item with the matching Item ID.
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: delayInSeconds
+          description: Delay to be applied
+    post:
+      summary: Create new Item
+      operationId: post-items-itemId
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+              examples:
+                Example 1:
+                  value:
+                    itemId: 1
+                    itemName: pencil
+                    itemVendorId: 123
+                    itemModelYear: 2004
+                    itemListPrice: 12.45
+                    dateCreated: '2024-02-20T08:26:37.089+00:00'
+                    lastModified: '2024-02-20T08:26:37.089+00:00'
+      requestBody:
+        $ref: '#/components/requestBodies/InputItem'
+    put:
+      summary: Modify/update item
+      operationId: put-items-itemId
+      responses:
+        '200':
+          description: OK
+      requestBody:
+        $ref: '#/components/requestBodies/InputItem'
+    delete:
+      summary: delete Item
+      operationId: delete-items-itemId
+      responses:
+        '204':
+          description: No Content
+  /echo:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: get-echo
+  /randomSized:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CustomSizedResponse'
+      operationId: get-randomSized
+      parameters:
+        - schema:
+            type: integer
+          in: query
+          name: size
+components:
+  schemas:
+    Item:
+      title: Item
+      type: object
+      description: Item object
+      examples:
+        - itemId: 1
+          itemName: pencil
+          itemVendorId: 123
+          itemModelYear: 2004
+          itemListPrice: 12.45
+          dateCreated: '2024-02-20T08:26:37.089+00:00'
+          lastModified: '2024-02-20T08:26:37.089+00:00'
+      properties:
+        itemId:
+          type: integer
+          description: Unique identifier for the given Item.
+        itemName:
+          type: string
+          description: Item description.
+        itemVendorId:
+          type: integer
+          description: Vendor id.
+        itemModelYear:
+          type: integer
+          description: Item model year.
+        itemListPrice:
+          type: number
+          description: Item Prize.
+        dateCreated:
+          type: string
+          x-stoplight:
+            id: gffhjfqb9nfo3
+        lastModified:
+          type: string
+          x-stoplight:
+            id: tdayuj1jei2lj
+      required:
+        - itemId
+        - itemName
+        - itemVendorId
+        - itemModelYear
+        - itemListPrice
+        - dateCreated
+        - lastModified
+    ItemInput:
+      title: Item Input
+      type: object
+      description: Item input object
+      examples:
+        - itemName: Pencil
+          itemVendorId: 4
+          itemModelYear: 1998
+          itemListPrice: 2.65
+      properties:
+        itemName:
+          type: string
+          description: Item description.
+        itemVendorId:
+          type: integer
+          description: Vendor id.
+        itemModelYear:
+          type: integer
+          description: Item model year.
+        itemListPrice:
+          type: number
+          description: Item Prize.
+      required:
+        - itemName
+        - itemVendorId
+        - itemModelYear
+        - itemListPrice
+    CustomSizedResponse:
+      type: object
+      properties:
+        size:
+          type: integer
+        responseData:
+          type: string
+      x-examples:
+        Example 1:
+          size: 1024
+          responseData: cguugtypiwbjlflcqzqmdnisiknxjlkjgfoyuqhvpsvhrmudqkmilxuupgylszgalhxezmypodzvxscezgbctvkazsabqnyejgwuowsexkfaontwroryifmtszpirxtowxuagpaeuayzhzwrudzhwlivsllosbbeqgxtkebrrpdxiplnryovjsfalrtysogoiusiolvtpusbrhgswbkncsbfpihhmobocsranpmxgtmprpbwejhivvlunlelfxyjnjrjhyxynpndxlrwvlbrkruvgxtxknbizffwpqxneqsqorrhowulguchymkagcponxbmrfsuvuyswgdvjjsqayzyilyuirhtdxpnmgkndmthmmogkagirvzaufrcdmdkjnyoyfjcwczvnhiafcygmolcirilozpmpnpiknusfxzpmxtdpjnzdnrulccwgwjbrilyqbcivtgapikspxgslmfovcbngeohjusovydviyyrftknmediwwuzlaflzpvztyeskjhfvrqemmlxhurhtetrdlhrbuwghsgaqajezyzgzjheywxuykhelakrxatenklzkmqgqmvoduhgnyfsmhrwjmsatvzvvhzbvzedydumkjpakvbvvvhcnxwtetsnjjekitvyvwvlkebgywasiwnczqgeuxqqaxuziizrbmxacfuqijxkzfrqxoxqsjhmgpflspvkvloxmxnqkdodtojxnssmfxvnuaznqsgeekdnocamrmjsrtkjifdempiievdhrliowigfxcjftqxyeiuwealrozvftczmlahmcyatvaigyinxvbavouwyiecrxgahrrpxlrgwngwpljnezcmkixinlyxaqclazztclnuxnowkclkgrncthcwbcawaahsouoykztbgmsoviwhdkzdtrkntydqlrq
+      examples:
+        - size: 0
+          responseData: string
+  requestBodies:
+    InputItem:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ItemInput'
