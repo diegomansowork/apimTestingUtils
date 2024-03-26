@@ -16,6 +16,7 @@
 	<description>APIM testing utils</description>
 	<properties>
 		<java.version>11</java.version>
+		<start-class>com.dmanso.apimTestingUtils.ApimTestingUtilsApplication</start-class>
 	</properties>
 	<dependencies>
 		<dependency>
