@@ -3,13 +3,21 @@ package com.dmanso.apimTestingUtils.controllers;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.dmanso.apimTestingUtils.model.Item;
-import com.dmanso.apimTestingUtils.services.ItemsService;
-
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.dmanso.apimTestingUtils.model.Item;
+import com.dmanso.apimTestingUtils.services.ItemsService;
 
 @RestController
 @RequestMapping("/utils/items")
@@ -30,7 +38,7 @@ public class ItemsController {
             TimeUnit.SECONDS.sleep(delayInSeconds);
             List<Item> items = itemsService.getItems();
             return new ResponseEntity<>(items, HttpStatus.OK);
-        } catch (Exception e) {          
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -44,7 +52,7 @@ public class ItemsController {
             }
             TimeUnit.SECONDS.sleep(delayInSeconds);
             return new ResponseEntity<>(itemsService.getItemById(itemId), HttpStatus.OK);
-        } catch (Exception e) {          
+        } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

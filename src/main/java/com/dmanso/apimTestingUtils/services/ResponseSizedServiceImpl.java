@@ -1,6 +1,7 @@
 package com.dmanso.apimTestingUtils.services;
 
 import java.util.Random;
+
 import org.springframework.stereotype.Service;
 
 import com.dmanso.apimTestingUtils.model.Response;
@@ -23,9 +24,9 @@ public class ResponseSizedServiceImpl implements ResponseSizedService{
             sizeInBytes = sizeInBytes -94;
         }
         return random.ints(leftLimit, rightLimit + 1)
-          .limit(sizeInBytes)
-          .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-          .toString();
+            .limit(sizeInBytes)
+            .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+            .toString();
 
     }
 
