@@ -1,8 +1,7 @@
-openapi: 3.1.0
+openapi: 3.0.1
 info:
   title: TestUtilities
   version: '1.0'
-  summary: API Test utilities
   description: This API could be used to test your API Manager or API Project
   contact:
     email: diegomansowork@outlook.es
@@ -157,7 +156,7 @@ components:
       title: Item
       type: object
       description: Item object
-      examples:
+      x-examples:
         - itemId: 1
           itemName: pencil
           itemVendorId: 123
@@ -201,7 +200,7 @@ components:
       title: Item Input
       type: object
       description: Item input object
-      examples:
+      x-examples:
         - itemName: Pencil
           itemVendorId: 4
           itemModelYear: 1998
@@ -235,9 +234,6 @@ components:
         Example 1:
           size: 1024
           responseData: cguugtypiwbjlflcqzqmdnisiknxjlkjgfoyuqhvpsvhrmudqkmilxuupgylszgalhxezmypodzvxscezgbctvkazsabqnyejgwuowsexkfaontwroryifmtszpirxtowxuagpaeuayzhzwrudzhwlivsllosbbeqgxtkebrrpdxiplnryovjsfalrtysogoiusiolvtpusbrhgswbkncsbfpihhmobocsranpmxgtmprpbwejhivvlunlelfxyjnjrjhyxynpndxlrwvlbrkruvgxtxknbizffwpqxneqsqorrhowulguchymkagcponxbmrfsuvuyswgdvjjsqayzyilyuirhtdxpnmgkndmthmmogkagirvzaufrcdmdkjnyoyfjcwczvnhiafcygmolcirilozpmpnpiknusfxzpmxtdpjnzdnrulccwgwjbrilyqbcivtgapikspxgslmfovcbngeohjusovydviyyrftknmediwwuzlaflzpvztyeskjhfvrqemmlxhurhtetrdlhrbuwghsgaqajezyzgzjheywxuykhelakrxatenklzkmqgqmvoduhgnyfsmhrwjmsatvzvvhzbvzedydumkjpakvbvvvhcnxwtetsnjjekitvyvwvlkebgywasiwnczqgeuxqqaxuziizrbmxacfuqijxkzfrqxoxqsjhmgpflspvkvloxmxnqkdodtojxnssmfxvnuaznqsgeekdnocamrmjsrtkjifdempiievdhrliowigfxcjftqxyeiuwealrozvftczmlahmcyatvaigyinxvbavouwyiecrxgahrrpxlrgwngwpljnezcmkixinlyxaqclazztclnuxnowkclkgrncthcwbcawaahsouoykztbgmsoviwhdkzdtrkntydqlrq
-      examples:
-        - size: 0
-          responseData: string
   requestBodies:
     InputItem:
       content:
