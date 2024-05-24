@@ -19,23 +19,22 @@ public class ItemLoader implements CommandLineRunner {
         loadItems();
     }
 
-    @SuppressWarnings("null")
     private void loadItems() {
         if (itemRepository.count() == 0) {
             itemRepository.save(
                     Item.builder()
-                            .itemName("pencil")
-                            .itemVendorId(123)
-                            .itemModelYear(2004)
-                            .itemListPrice(12.45)
+                            .name("pencil")
+                            .vendorId(123)
+                            .modelYear(2004)
+                            .listPrice(12.45)
                             .build()
             );
             itemRepository.save(
                     Item.builder()
-                            .itemName("table")
-                            .itemVendorId(1543)
-                            .itemModelYear(2013)
-                            .itemListPrice(1244.32)
+                            .name("table")
+                            .vendorId(1543)
+                            .modelYear(2013)
+                            .listPrice(1244.32)
                             .build()
             );
             System.out.println("Sample Items Loaded");

@@ -25,19 +25,19 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(updatable = false, nullable = false)
-    Long itemId;
+    Long id;
     
     @Column
-    String itemName;
+    String name;
     
     @Column
-    int itemVendorId;
+    int vendorId;
     
     @Column
-    int itemModelYear;
+    int modelYear;
     
     @Column
-    Number itemListPrice;
+    Number listPrice;
 
     @CreationTimestamp
     @Column(updatable = false)

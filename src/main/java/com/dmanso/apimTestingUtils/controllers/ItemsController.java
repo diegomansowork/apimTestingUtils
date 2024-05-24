@@ -61,7 +61,7 @@ public class ItemsController {
     public ResponseEntity<Item> saveItem(@RequestBody Item item) {
         Item item1 = itemsService.insert(item);
         HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("item", "/utils/items/" + item1.getItemId());
+        httpHeaders.add("item", "/utils/items/" + item1.getId());
         return new ResponseEntity<>(item1, httpHeaders, HttpStatus.CREATED);
     }
 

@@ -37,10 +37,10 @@ public class ItemsServiceImpl implements ItemsService {
     public void updateItem(Long id, Item item) {
         Item itemFromDb = itemsRepository.findById(id).get();
         System.out.println(itemFromDb.toString());
-        itemFromDb.setItemListPrice(item.getItemListPrice());
-        itemFromDb.setItemModelYear(item.getItemModelYear());
-        itemFromDb.setItemName(item.getItemName());
-        itemFromDb.setItemVendorId(item.getItemVendorId());
+        itemFromDb.setListPrice(item.getListPrice());
+        itemFromDb.setModelYear(item.getModelYear());
+        itemFromDb.setName(item.getName());
+        itemFromDb.setVendorId(item.getVendorId());
         itemsRepository.save(itemFromDb);
     }
 

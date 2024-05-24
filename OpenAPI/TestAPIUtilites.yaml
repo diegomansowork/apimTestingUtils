@@ -1,7 +1,7 @@
 openapi: 3.0.1
 info:
   title: TestUtilities
-  version: '1.0'
+  version: '1.1'
   description: This API could be used to test your API Manager or API Project
   contact:
     email: diegomansowork@outlook.es
@@ -13,7 +13,7 @@ paths:
   /items:
     parameters: []
     get:
-      summary: Get Item Info by Item ID
+      summary: Get All Items
       tags: []
       responses:
         '200':
@@ -27,18 +27,18 @@ paths:
               examples:
                 Get Item ID 1:
                   value:
-                    - itemId: 1
-                      itemName: pencil
-                      itemVendorId: 123
-                      itemModelYear: 2004
-                      itemListPrice: 12.45
+                    - id: 1
+                      name: pencil
+                      vendorId: 123
+                      modelYear: 2004
+                      listPrice: 12.45
                       dateCreated: '2024-02-19T18:02:13.125+00:00'
                       lastModified: '2024-02-19T18:02:13.126+00:00'
                     - itemId: 2
-                      itemName: table
-                      itemVendorId: 1543
-                      itemModelYear: 2013
-                      itemListPrice: 1244.32
+                      name: table
+                      vendorId: 1543
+                      modelYear: 2013
+                      listPrice: 1244.32
                       dateCreated: '2024-02-19T18:02:13.158+00:00'
                       lastModified: '2024-02-19T18:02:13.158+00:00'
         '404':
@@ -65,10 +65,10 @@ paths:
                 Example 1:
                   value:
                     itemId: 1
-                    itemName: pencil
-                    itemVendorId: 123
-                    itemModelYear: 2004
-                    itemListPrice: 12.45
+                    name: pencil
+                    vendorId: 123
+                    modelYear: 2004
+                    listPrice: 12.45
                     dateCreated: '2024-02-20T08:26:37.089+00:00'
                     lastModified: '2024-02-20T08:26:37.089+00:00'
       requestBody:
@@ -95,10 +95,10 @@ paths:
                 Get Item ID 1:
                   value:
                     itemId: 1
-                    itemName: Pencil
-                    itemVendorId: 3
-                    itemModelYear: 1998
-                    itemListPrice: 2.65
+                    name: Pencil
+                    vendorId: 3
+                    modelYear: 1998
+                    listPrice: 2.65
                     dateCreated: '2024-02-19T18:02:13.125+00:00'
                     lastModified: '2024-02-19T18:02:13.126+00:00'
         '404':
@@ -158,26 +158,26 @@ components:
       description: Item object
       x-examples:
         - itemId: 1
-          itemName: pencil
-          itemVendorId: 123
-          itemModelYear: 2004
-          itemListPrice: 12.45
+          name: pencil
+          vendorId: 123
+          modelYear: 2004
+          listPrice: 12.45
           dateCreated: '2024-02-20T08:26:37.089+00:00'
           lastModified: '2024-02-20T08:26:37.089+00:00'
       properties:
         itemId:
           type: integer
           description: Unique identifier for the given Item.
-        itemName:
+        name:
           type: string
           description: Item description.
-        itemVendorId:
+        vendorId:
           type: integer
           description: Vendor id.
-        itemModelYear:
+        modelYear:
           type: integer
           description: Item model year.
-        itemListPrice:
+        listPrice:
           type: number
           description: Item Prize.
         dateCreated:
@@ -190,10 +190,10 @@ components:
             id: tdayuj1jei2lj
       required:
         - itemId
-        - itemName
-        - itemVendorId
-        - itemModelYear
-        - itemListPrice
+        - name
+        - vendorId
+        - modelYear
+        - listPrice
         - dateCreated
         - lastModified
     ItemInput:
@@ -201,28 +201,28 @@ components:
       type: object
       description: Item input object
       x-examples:
-        - itemName: Pencil
-          itemVendorId: 4
-          itemModelYear: 1998
-          itemListPrice: 2.65
+        - name: Pencil
+          vendorId: 4
+          modelYear: 1998
+          listPrice: 2.65
       properties:
-        itemName:
+        name:
           type: string
           description: Item description.
-        itemVendorId:
+        vendorId:
           type: integer
           description: Vendor id.
-        itemModelYear:
+        modelYear:
           type: integer
           description: Item model year.
-        itemListPrice:
+        listPrice:
           type: number
           description: Item Prize.
       required:
-        - itemName
-        - itemVendorId
-        - itemModelYear
-        - itemListPrice
+        - name
+        - vendorId
+        - modelYear
+        - listPrice
     CustomSizedResponse:
       type: object
       properties:
