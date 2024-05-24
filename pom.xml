@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.dmanso</groupId>
 	<artifactId>apim-test-utils</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>endpointtester</name>
 	<description>APIM testing utils</description>
 	<properties>
@@ -38,21 +38,6 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>6.4.4.Final</version>
 		</dependency>
-
-
-		<!-- 
-		<dependency>
-		  <groupId>org.springframework.boot</groupId>
-		  <artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
-
-				<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-properties-migrator</artifactId>
-			<scope>runtime</scope>
-		</dependency>
-		-->
-
 
 		<dependency>
 		  <groupId>org.springframework.boot</groupId>
