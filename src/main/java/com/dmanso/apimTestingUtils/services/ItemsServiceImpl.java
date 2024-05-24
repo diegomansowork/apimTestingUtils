@@ -2,6 +2,8 @@ package com.dmanso.apimTestingUtils.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 import com.dmanso.apimTestingUtils.model.Item;
@@ -24,8 +26,8 @@ public class ItemsServiceImpl implements ItemsService {
     }
 
     @Override
-    public Item getItemById(Long id) {
-        return itemsRepository.findById(id).get();
+    public Optional<Item> getItemById(Long id) {
+        return itemsRepository.findById(id);
     }
 
     @Override

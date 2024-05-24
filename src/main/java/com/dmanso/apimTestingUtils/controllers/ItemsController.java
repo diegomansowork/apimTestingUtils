@@ -53,12 +53,12 @@ public class ItemsController {
             }
             TimeUnit.SECONDS.sleep(delayInSeconds);
 
-            Item item = itemsService.getItemById(itemId);
+            Optional<Item> optionalItem = itemsService.getItemById(itemId);
 
-            if(item==null){
+            if(!optionalItem.isPresent()){
                 return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<>(item, HttpStatus.OK);
+            return new ResponseEntity<>(optionalItem.get(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -66,20 +66,33 @@ public class ItemsController {
     
     @PostMapping
     public ResponseEntity<Item> saveItem(@RequestBody Item item) {
-        Item item1 = itemsService.insert(item);
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.add("item", "/utils/items/" + item1.getId());
-        return new ResponseEntity<>(item1, httpHeaders, HttpStatus.CREATED);
+        if(item.getName()!=null && !item.getName().equals("") && item.getVendorId()!= 0){
+            Item item1 = itemsService.insert(item);
+            HttpHeaders httpHeaders = new HttpHeaders();
+            httpHeaders.add("item", "/utils/items/" + item1.getId());
+            return new ResponseEntity<>(item1, httpHeaders, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PutMapping({"/{itemId}"})
     public ResponseEntity<Item> updateItem(@PathVariable("itemId") Long itemId, @RequestBody Item item) {
         itemsService.updateItem(itemId, item);
-        return new ResponseEntity<>(itemsService.getItemById(itemId), HttpStatus.OK);
+        Optional<Item> optionalItem = itemsService.getItemById(itemId);
+        if(!optionalItem.isPresent()){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(itemsService.getItemById(itemId).get(), HttpStatus.OK);
     }
 
     @DeleteMapping({"/{itemId}"})
     public ResponseEntity<Item> deleteItem(@PathVariable("itemId") Long itemId) {
+        Optional<Item> optionalItem = itemsService.getItemById(itemId);
+        if(!optionalItem.isPresent()){
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
         itemsService.deleteItem(itemId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
