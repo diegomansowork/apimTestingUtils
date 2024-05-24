@@ -1,6 +1,7 @@
 package com.dmanso.apimTestingUtils.controllers;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.http.HttpHeaders;
@@ -51,7 +52,13 @@ public class ItemsController {
                 delayInSeconds = 0;
             }
             TimeUnit.SECONDS.sleep(delayInSeconds);
-            return new ResponseEntity<>(itemsService.getItemById(itemId), HttpStatus.OK);
+
+            Item item = itemsService.getItemById(itemId);
+
+            if(item==null){
+                return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(item, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
