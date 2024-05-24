@@ -41,8 +41,6 @@ paths:
                       listPrice: 1244.32
                       dateCreated: '2024-02-19T18:02:13.158+00:00'
                       lastModified: '2024-02-19T18:02:13.158+00:00'
-        '404':
-          description: Item Not Found
       operationId: get-Items
       description: Retrieve a list with all Items.
       parameters:
@@ -71,6 +69,8 @@ paths:
                     listPrice: 12.45
                     dateCreated: '2024-02-20T08:26:37.089+00:00'
                     lastModified: '2024-02-20T08:26:37.089+00:00'
+        '400':
+          description: Bad Request
       requestBody:
         $ref: '#/components/requestBodies/InputItem'
   '/items/{itemId}':
@@ -117,6 +117,8 @@ paths:
       responses:
         '200':
           description: OK
+        '404':
+          description: Item Not Found
       requestBody:
         $ref: '#/components/requestBodies/InputItem'
     delete:
@@ -125,6 +127,8 @@ paths:
       responses:
         '204':
           description: No Content
+        '404':
+          description: Item Not Found
   /echo:
     get:
       summary: Your GET endpoint

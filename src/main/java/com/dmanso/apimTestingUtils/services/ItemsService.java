@@ -3,6 +3,7 @@ package com.dmanso.apimTestingUtils.services;
 import com.dmanso.apimTestingUtils.model.Item;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
@@ -10,7 +11,7 @@ public interface ItemsService {
     
     List<Item> getItems();
 
-    Item getItemById(Long id);
+    Optional<Item> getItemById(Long id);
 
     Item insert(Item item);
 
