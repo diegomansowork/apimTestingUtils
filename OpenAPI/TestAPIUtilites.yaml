@@ -51,6 +51,28 @@ paths:
           in: query
           name: delayInSeconds
           description: Delay to be applied
+    post:
+      summary: Create new Item
+      operationId: post-items-itemId
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Item'
+              examples:
+                Example 1:
+                  value:
+                    itemId: 1
+                    itemName: pencil
+                    itemVendorId: 123
+                    itemModelYear: 2004
+                    itemListPrice: 12.45
+                    dateCreated: '2024-02-20T08:26:37.089+00:00'
+                    lastModified: '2024-02-20T08:26:37.089+00:00'
+      requestBody:
+        $ref: '#/components/requestBodies/InputItem'
   '/items/{itemId}':
     parameters:
       - schema:
@@ -89,28 +111,6 @@ paths:
           in: query
           name: delayInSeconds
           description: Delay to be applied
-    post:
-      summary: Create new Item
-      operationId: post-items-itemId
-      responses:
-        '201':
-          description: Created
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Item'
-              examples:
-                Example 1:
-                  value:
-                    itemId: 1
-                    itemName: pencil
-                    itemVendorId: 123
-                    itemModelYear: 2004
-                    itemListPrice: 12.45
-                    dateCreated: '2024-02-20T08:26:37.089+00:00'
-                    lastModified: '2024-02-20T08:26:37.089+00:00'
-      requestBody:
-        $ref: '#/components/requestBodies/InputItem'
     put:
       summary: Modify/update item
       operationId: put-items-itemId
